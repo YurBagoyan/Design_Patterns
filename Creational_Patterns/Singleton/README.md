@@ -1,5 +1,9 @@
 # Singleton
-Singleton is a creational design pattern that lets you ensure that a class has only one instance, while providing a global access point to this instance.
+Singleton is a creational design pattern, which ensures that only one object of its kind exists and provides a single point of access to it for any other code.
+
+Singleton has almost the same pros and cons as global variables. Although they’re super-handy, they break the modularity of your code.
+
+You can’t just use a class that depends on a Singleton in some other context, without carrying over the Singleton to the other context. Most of the time, this limitation comes up during the creation of unit tests.
 
 
 ## Problem
