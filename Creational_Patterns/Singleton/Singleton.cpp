@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <mutex>
 
 class SymbolTable
 {
@@ -18,12 +19,15 @@ public: // Methods
 private: // Members
     static SymbolTable* instance;
     std::vector<std::string> symbols;
-
 };
 
+std::mutex m_mutex;
 
 SymbolTable* SymbolTable::getInstance()
 {
+    // The mutex wrapped in a lock guarantees that the singleton will be thread-safe initialized
+    std::lock_guard<std::mutex> lock(m_mutex);
+
     if (instance == nullptr) {
         instance = new SymbolTable();               
     }
@@ -50,17 +54,15 @@ SymbolTable* SymbolTable::instance = nullptr;
 
 int main()
 {
-        SymbolTable* symbolTable_1 = SymbolTable::getInstance();
+    SymbolTable* symbolTable_1 = SymbolTable::getInstance();
 
-            symbolTable_1->addSymbol("abc");
-                symbolTable_1->addSymbol("def");
-                    symbolTable_1->addSymbol("44");
-                        symbolTable_1->print();
-
-                            SymbolTable*  symbolTable_2 = SymbolTable::getInstance();
-                                symbolTable_2->print();
-
-                                
+    symbolTable_1->addSymbol("abc");
+    symbolTable_1->addSymbol("def");
+    symbolTable_1->addSymbol("44");
+    symbolTable_1->print();
+    
+    SymbolTable*  symbolTable_2 = SymbolTable::getInstance();
+    symbolTable_2->print();                            
 }
 
 
