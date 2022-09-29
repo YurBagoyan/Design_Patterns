@@ -13,3 +13,20 @@ There’s another approach that doesn’t involve breeding subclasses. You can c
 In most cases most of the parameters will be unused, making the constructor calls pretty ugly. For instance, only a fraction of houses have swimming pools, so the parameters related to swimming pools will be useless nine times out of ten.
 
 ## Solution
+The Builder pattern suggests that you extract the object construction code out of its own class and move it to separate objects called builders.
+
+The pattern organizes object construction into a set of steps. To create an object, you execute a series of these steps on a builder object. The important part is that you don’t need to call all of the steps. You can call only those steps that are necessary for producing a particular configuration of an object.
+
+Some of the construction steps might require different implementation when you need to build various representations of the product. For example, walls of a cabin may be built of wood, but the castle walls must be built with stone.
+
+
+
+
+
+
+
+
+
+
+
+
