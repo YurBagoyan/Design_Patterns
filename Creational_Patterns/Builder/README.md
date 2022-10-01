@@ -26,9 +26,30 @@ Having a director class in your program isn’t strictly necessary. You can alwa
 
 In addition, the director class completely hides the details of product construction from the client code. The client only needs to associate a builder with a director, launch the construction with the director, and get the result from the builder.
 
+## Applicability
 
+-  Use the Builder pattern to get rid of a “telescoping constructor”. Say you have a constructor with ten optional parameters. Calling such a beast is very inconvenient; therefore, you overload the constructor and create several shorter versions with fewer parameters. These constructors still refer to the main one, passing some default values into any omitted parameters.
 
+```
+class Pizza {
+    Pizza(int size) { ... }
+    Pizza(int size, boolean cheese) { ... }
+    Pizza(int size, boolean cheese, boolean pepperoni) { ... }
+    // ...
+```
+The Builder pattern lets you build objects step by step, using only those steps that you really need. After implementing the pattern, you don’t have to cram dozens of parameters into your constructors anymore.
 
+- Use the Builder pattern when you want your code to be able to create different representations of some product (for example, stone and wooden houses). The Builder pattern can be applied when construction of various representations of the product involves similar steps that differ only in the details.
 
+##  How to Implement
+1. Make sure that you can clearly define the common construction steps for building all available product representations. Otherwise, you won’t be able to proceed with implementing the pattern.
 
+2. Declare these steps in the base builder interface.
 
+3. Create a concrete builder class for each of the product representations and implement their construction steps.
+
+4. Think about creating a director class. It may encapsulate various ways to construct a product using the same builder object.
+
+5. The client code creates both the builder and the director objects. Before construction starts, the client must pass a builder object to the director. Usually, the client does this only once, via parameters of the director’s class constructor. The director uses the builder object in all further construction. There’s an alternative approach, where the builder is passed to a specific product construction method of the director.
+
+6. The construction result can be obtained directly from the director only if all products follow the same interface. Otherwise, the client should fetch the result from the builder.
