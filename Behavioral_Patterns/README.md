@@ -1,2 +1,2 @@
 ## Behavioral Patterns
-These patterns are concerned with algorithms and the assignment of responsibilities between objects.
+A list of behavioral design patterns that solve problems of efficient and safe interaction between program objects.
