@@ -1,4 +1,4 @@
-# Observer
+# Observer 
 Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing.
 
 An Observer is a behavioral pattern that creates a subscription mechanism that allows one object to monitor and respond to events in other objects. Conventionally, let's call controlling and responding objects subscribers, and controlled objects publisher.
